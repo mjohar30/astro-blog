@@ -1,0 +1,104 @@
+---
+import MainLayout from "src/layouts/MainLayout.astro";
+import "../../styles/blog.css";
+import { Image } from "astro:assets";
+
+import post05Img from "@images/post-05.png";
+import { Picture } from "astro:assets";
+---
+
+<MainLayout title="Imagenes">
+  <h1 class="text-5xl">imagenes</h1>
+  <img src="/assets/images/post-05.png" alt="" width="350" height="350" />
+
+  <Image src={post05Img} width="350" height="350" alt="imagen del post" />
+  <Image
+    src={post05Img}
+    style={{ width: "250px", height: "250px" }}
+    width="500"
+    height="500"
+    alt="imagen del post"
+  />
+  <h1>Quality low</h1>
+  <Image
+    src={post05Img}
+    quality="low"
+    width="350"
+    height="350"
+    alt="imagen del post"
+  />
+  <h1>Quality mid</h1>
+  <Image
+    src={post05Img}
+    quality="mid"
+    width="350"
+    height="350"
+    alt="imagen del post"
+  />
+  <h1>Quality max</h1>
+  <Image
+    src={post05Img}
+    quality="max"
+    width="350"
+    height="350"
+    alt="imagen del post"
+  />
+
+  <h1>Formatos</h1>
+  <Image
+    src={post05Img}
+    format="avif"
+    width="350"
+    height="350"
+    alt="imagen del post"
+  />
+
+  <h1>Picture</h1>
+
+  <Picture
+    src={post05Img}
+    formats={["webp", "avif", "jpeg"]}
+    width="350"
+    height="350"
+    alt="imagen del post"
+  />
+  <p>Widths</p>
+  <Picture
+    src={post05Img}
+    widths={[240, 540, 720, post05Img.width]}
+    sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${post05Img.width}px`}
+    width="350"
+    height="350"
+    alt="imagen del post"
+  />
+
+  <p>Density</p>
+  <Picture
+    src={post05Img}
+    alt="imagen del post"
+    width={post05Img.width / 2}
+    densities={[1.5, 2]}
+  />
+
+  <div
+    style={{
+      height: "3000px",
+    }}
+  >
+  </div>
+  <img
+    loading="lazy"
+    src="/assets/images/post-01.png"
+    alt=""
+    width="350"
+    height="350"
+  />
+</MainLayout>
+
+<style>
+  @reference '../../styles/blog.css';
+
+  h1 {
+    @apply text-white mt-10;
+  }
+</style>

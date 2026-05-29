@@ -1,12 +1,11 @@
 ---
-import { getCollection } from "astro:content";
 import { siteConfig } from "../config/site-config";
 import MainLayout from "../layouts/MainLayout.astro";
+import BlogPost from "../components/BlogPost.astro";
 import "../styles/global.css";
-import TypedBlogPost from "src/components/TypedBlogPost.astro";
 
-// const posts = Object.values(import.meta.glob('./posts/*.{md,mdx}', { eager: true }));
-const blogPosts = await getCollection('blog')
+const posts = Object.values(import.meta.glob('./posts/*.{md,mdx}', { eager: true }));
+console.log(posts)
 
 ---
 
@@ -21,7 +20,7 @@ const blogPosts = await getCollection('blog')
 
 			<div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
 				{
-					blogPosts.map((post: any) => <TypedBlogPost post={post}/>)
+					posts.map((post: any) => <BlogPost {...post}/>)
 				}
 			</div>
 		</div>
