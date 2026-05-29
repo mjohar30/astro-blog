@@ -1,4 +1,4 @@
-import { defineCollection } from "astro:content";
+import { defineCollection, reference } from "astro:content";
 import { glob, file } from 'astro/loaders';
 import { z } from 'astro/zod';
 
@@ -12,10 +12,25 @@ const blog = defineCollection({
     image: image(),
 
     //Relacion
-    author: z.string(),
+    author: reference('author'),
     tags: z.array(z.string()),
+
+    isDraft: z.boolean().default(false)
   }),
 });
 
+const author = defineCollection({
+  loader: glob({ base: './src/content/author', pattern: '**/*.yml' }),
+  schema: ({image}) => z.object({
+    name: z.string(),
+    avatar: image(),
+    twitter: z.string(),
+    linkedIn: z.string(),
+    github: z.string(),
+    bio: z.string(),
+    subtitle: z.string(),
+  })
+})
+
 // 5. Export a single `collections` object to register your collection(s)
-export const collections = { blog };
+export const collections = { blog, author};

@@ -6,7 +6,7 @@ import "../styles/global.css";
 import TypedBlogPost from "src/components/TypedBlogPost.astro";
 
 // const posts = Object.values(import.meta.glob('./posts/*.{md,mdx}', { eager: true }));
-const blogPosts = await getCollection('blog')
+const blogPosts = await getCollection('blog', (post) => post.data.isDraft === false)
 
 ---
 
@@ -19,6 +19,9 @@ const blogPosts = await getCollection('blog')
 				{ siteConfig.title}
 			</h1>
 
+			<a class="mr-2" href="/blog/1">Blog paginado</a>
+			<a class="mr-2" href="/authors">Autores</a>
+
 			<div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
 				{
 					blogPosts.map((post: any) => <TypedBlogPost post={post}/>)
@@ -27,3 +30,12 @@ const blogPosts = await getCollection('blog')
 		</div>
 	</section>
 </MainLayout>
+
+<style>
+  @reference '../styles/global.css';
+  
+  a {
+    @apply text-blue-500 hover:underline;
+  }
+
+</style>
