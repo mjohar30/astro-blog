@@ -9,7 +9,7 @@ tags: [JavaScript, ES6, Programming]
 # layout: ../../layouts/BlogLayout.astro
 ---
 
-# { frontmatter.title }
+# Explorando Funciones de ES6!!!!
 
 {/* <!-- Mostrar imagen --> */}
 {/* <img src="/assets/images/post-01.png" width="350" alt="Explorando Funciones de ES6" /> */}
